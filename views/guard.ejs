@@ -1,0 +1,19 @@
+<!-- Modify your HTML form -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guard Login</title>
+</head>
+<body>
+    <form action="/checkout" method="post"> <!-- Use POST method to send sensitive information like passwords -->
+        <input type="password" name="password">
+        <button type="submit">Login</button>
+    </form>
+    <form action="/home">
+        <button>Go to Home Page</button>
+    </form>
+</body>
+</html>
+

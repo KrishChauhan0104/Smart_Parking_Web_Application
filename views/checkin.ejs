@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check-In/Check-Out</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body style="background-color: rgb(217, 217, 181);">
+
+    <header>
+        <h1>Check-In/Check-Out</h1>
+    </header>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Vehicle Number</th>
+            <th>Date</th>
+            <th>Entry Time</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        <% for (let i = 0; i < bookings.length; i++) { %>
+            <tr>
+                <td><%= bookings[i].id %></td>
+                <td><%= bookings[i].name %></td>
+                <td><%= bookings[i].vehicleNumber %></td>
+                <td><%= bookings[i].date %></td>
+                <td><%= bookings[i].entryTime %></td>
+                <td><%= bookings[i].status %></td>
+                <td class="<%= bookings[i].status === 'checkin' ? 'booked' : '' %>">
+                  <% if (bookings[i].status === 'checkin') { %>
+                      <form action="/checkin-checkout" method="post">
+                          <input type="hidden" name="bookingId" value="<%= bookings[i].id %>">
+                          <input type="hidden" name="currentStatus" value="<%= bookings[i].status %>">
+                          <button type="submit">Check-In</button>
+                      </form>
+                  <% } else { %>
+                      <form action="/checkin-checkout" method="post">
+                          <input type="hidden" name="bookingId" value="<%= bookings[i].id %>">
+                          <input type="hidden" name="currentStatus" value="<%= bookings[i].status %>">
+                          <button type="submit">Check-Out</button>
+                      </form>
+                  <% } %>
+              </td>
+            </tr>
+        <% } %>
+    </table>
+    <form action="/home">
+      <button>Go to Home Page</button>
+  </form>
+    
+
+    <script src="script.js"></script>
+</body>
+
+</html>
